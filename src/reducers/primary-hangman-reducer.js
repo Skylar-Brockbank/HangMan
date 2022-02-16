@@ -6,8 +6,8 @@ export default (state={}, action) => {
         strikes: 0,
         playing: true,
         lettersAvailable: {A:true,B:true,C:true,D:true,E:true,F:true,G:true,H:true,I:true,J:true,K:true,L:true,M:true,N:true,O:true,P:true,Q:true,R:true,S:true,T:true,U:true,V:true,W:true,X:true,Y:true,Z:true},
-        targetWord: [],
-        guess: ['_', '_', '_', '_', '_', '_', '_']
+        targetWord: targetWord,
+        guess: targetWord.map(() => {return ('_')})
       });
     case 'GAME_OVER':
       let newState ={...state};
@@ -20,9 +20,9 @@ export default (state={}, action) => {
         lettersAvailable: lettersAvailable,
         targetWord: targetWord,
         guess: guess
-      })
+      });
     default:
-        return state;
+      return state;
     
   }
 }

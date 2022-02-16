@@ -5,9 +5,6 @@ import Gallows from "./gallows";
 import WordDisplay from "./WordDisplay";
 
 class App extends React.Component{
-  // constructor(props){
-  //   super(props);
-  // }
   updateState = (input) =>{
     const {dispatch}=this.props;
     const {strikes, playing, lettersAvailable, targetWord, guess} = input;
@@ -22,12 +19,30 @@ class App extends React.Component{
     dispatch(action);
   }
 
-  addStrikes = () => this.updateState({strikes: this.props.strikes+1});
+  addStrikes = (lettersAvailable) => this.updateState({strikes: this.props.strikes+1, lettersAvailable: lettersAvailable});
+  addGuess = (guess, lettersAvailable) => this.updateState({guess: guess, lettersAvailable: lettersAvailable});
 
   handleGuess = (letter) => {
     console.log(`You clicked ${letter}`);
     console.log(this.props.lettersAvailable[letter]);
-    // State Changes: call guess action
+  }
+
+  handleSomeonePushingYourButtons = (letter) =>{
+    let newLettersAvailable = {...this.props.lettersAvailable};
+    newLettersAvailable[letter] = !newLettersAvailable[letter];
+    let standInGuess = [...this.props.guess];
+    if (this.props.targetWord.includes(letter)) {
+      this.props.targetWord.map((x, index)=> {
+        if(x===letter){
+          standInGuess[index] = x;
+        }
+        return null;
+      });
+      this.addGuess(standInGuess, newLettersAvailable);
+    } else {
+      this.addStrikes(newLettersAvailable);
+    }
+
   }
 
   render(){
@@ -36,7 +51,7 @@ class App extends React.Component{
       <div onClick={this.addStrikes}>test button thing</div>
       <Gallows strikes={this.props.strikes}/>
       <WordDisplay guess={this.props.guess}/>
-      <LetterButtons availableLetters={this.props.lettersAvailable} onLetterClick={this.handleGuess}/>
+      <LetterButtons availableLetters={this.props.lettersAvailable} onLetterClick={this.handleSomeonePushingYourButtons}/>
       </React.Fragment>
       );
     }

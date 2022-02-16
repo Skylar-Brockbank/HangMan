@@ -34,7 +34,7 @@ function Gallows(props) {
         {output}
         </h1>
       </React.Fragment>
-    )
+    );
 }
 
 Gallows.propTypes ={

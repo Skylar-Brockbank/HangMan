@@ -8,8 +8,9 @@ import reducer from './reducers/primary-hangman-reducer';
 import {Provider} from 'react-redux';
 
 const store = createStore(reducer);
+const inputWord = 'connecticut'.toUpperCase().split('');
 store.subscribe(()=>console.log(store.getState()));
-store.dispatch({type:'NEW_GAME'});
+store.dispatch({type:'NEW_GAME', targetWord: inputWord});
 ReactDOM.render(
   <Provider store={store}>
     <App />

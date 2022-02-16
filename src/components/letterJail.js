@@ -13,9 +13,10 @@ function letterJail(props){
       letterJailOutput.push(letter);
     }
   });
+  const letterJailOutputtext = letterJailOutput.join(',');
   return(
     <React.Fragment>
-      {letterJailOutput}
+      {letterJailOutputtext}
     </React.Fragment>
   );
 }
