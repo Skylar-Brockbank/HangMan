@@ -1,18 +1,26 @@
 export default (state={}, action) => {
   const{ strikes, playing, lettersAvailable, targetWord, guess} = action;
   switch(action.type){
-    case 'ADD_STRIKE':
+    case 'NEW_GAME':
       return Object.assign({},state,{
-        strikes: (strikes+1),
-        playing: playing,
-        lettersAvailable: lettersAvailable,
-        targetWord: targetWord,
-        guess: guess
+        strikes: 0,
+        playing: true,
+        lettersAvailable: {A:true,B:true,C:true,D:true,E:true,F:true,G:true,H:true,I:true,J:true,K:true,L:true,M:true,N:true,O:true,P:true,Q:true,R:true,S:true,T:true,U:true,V:true,W:true,X:true,Y:true,Z:true},
+        targetWord: [],
+        guess: ['_', '_', '_', '_', '_', '_', '_']
       });
     case 'GAME_OVER':
       let newState ={...state};
       newState.playing = !newState.playing;
       return newState;
+    case 'EDIT_STATE':
+      return Object.assign({},state,{
+        strikes: strikes,
+        playing: playing,
+        lettersAvailable: lettersAvailable,
+        targetWord: targetWord,
+        guess: guess
+      })
     default:
         return state;
     

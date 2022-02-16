@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.guessLetter {
+  display: inline-block;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.wordDisplayZone {
+  text-align: center;
+}
+
+.letterButtonZone {
+  text-align: center;
+}
+
+.gallowsZone {
+  text-align: center;
+}
