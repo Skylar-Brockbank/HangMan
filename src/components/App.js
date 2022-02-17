@@ -19,12 +19,20 @@ class App extends React.Component{
     dispatch(action);
   }
 
-  addStrikes = (lettersAvailable) => this.updateState({strikes: this.props.strikes+1, lettersAvailable: lettersAvailable});
-  addGuess = (guess, lettersAvailable) => this.updateState({guess: guess, lettersAvailable: lettersAvailable});
+  addStrikes = (lettersAvailable) => {
+    if (this.props.strikes+1 >= 6) {
+      this.updateState({playing: false});
+    } else {
+      this.updateState({strikes: this.props.strikes+1, lettersAvailable: lettersAvailable});
+    }
+  }
 
-  handleGuess = (letter) => {
-    console.log(`You clicked ${letter}`);
-    console.log(this.props.lettersAvailable[letter]);
+  addGuess = (guess, lettersAvailable) => {
+    if (guess === this.props.targetWord) {
+      this.updateState({playing: false});
+    } else {
+      this.updateState({guess: guess, lettersAvailable: lettersAvailable});
+    }
   }
 
   handleSomeonePushingYourButtons = (letter) =>{
@@ -44,7 +52,9 @@ class App extends React.Component{
     }
 
   }
-
+//conditional rendering if playing==false and guess==targetWord => you win
+//                      if playing==false and guess!=targetWord => you lose
+//                      else you're still playing
   render(){
     return(
       <React.Fragment>
