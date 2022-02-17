@@ -19,18 +19,10 @@ WordDisplay component
   display guess state
 
 
-
-
-if targetWord.Includes(letter)
-{
-  {
-    targetWord.map((x, index)=>{
-      if(x===letter){
-        standinGuess[index] === x;
-      }
-    })
-  }
-  //make an action container that changes the guess state
-}else{
-  //add strike
-}
+ToDo
+======================
+-add gameover actions
+-add API integration
+-add styles
+-try not to cry
+-cry a lot
