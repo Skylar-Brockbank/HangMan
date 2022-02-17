@@ -10,6 +10,7 @@ import RandomWords from 'random-words';
 
 const store = createStore(reducer);
 const inputWord = RandomWords().toUpperCase().split('');
+
 store.dispatch({type:'NEW_GAME', targetWord: inputWord});
 ReactDOM.render(
   <Provider store={store}>
