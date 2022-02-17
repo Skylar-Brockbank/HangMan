@@ -10,9 +10,13 @@ export default (state={}, action) => {
         guess: targetWord.map(() => {return ('_')})
       });
     case 'GAME_OVER':
-      let newState ={...state};
-      newState.playing = !newState.playing;
-      return newState;
+      return Object.assign({},state,{
+        strikes: strikes,
+        playing: !playing,
+        lettersAvailable: lettersAvailable,
+        targetWord: targetWord,
+        guess: guess
+      });
     case 'EDIT_STATE':
       return Object.assign({},state,{
         strikes: strikes,
