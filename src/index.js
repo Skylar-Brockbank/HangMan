@@ -6,10 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {createStore} from 'redux';
 import reducer from './reducers/primary-hangman-reducer';
 import {Provider} from 'react-redux';
+import RandomWords from 'random-words';
 
 const store = createStore(reducer);
-const inputWord = 'connecticut'.toUpperCase().split('');
-store.subscribe(()=>console.log(store.getState()));
+const inputWord = RandomWords().toUpperCase().split('');
 store.dispatch({type:'NEW_GAME', targetWord: inputWord});
 ReactDOM.render(
   <Provider store={store}>

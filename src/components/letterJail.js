@@ -1,18 +1,20 @@
 import React from 'react';
 
 function letterJail(props){
-  let uniqueList = new array;
-  let letterJailOutput = new array;
+  let uniqueList=[];
+  let letterJailOutput=[];
   props.targetWord.forEach(element => {
     if (!uniqueList.includes(element)){
       uniqueList.push(element);
     }
   });
-  props.lettersAvailable.forEach(letter=>{
-    if (!uniqueList.includes(letter)){
-      letterJailOutput.push(letter);
+  for(const thing in props.lettersAvailable){
+    console.log(thing.value);
+    if (!uniqueList.includes(thing.key)&&thing.value===false){
+      letterJailOutput.push(thing.key);
+      
     }
-  });
+  }
   const letterJailOutputtext = letterJailOutput.join(',');
   return(
     <React.Fragment>
